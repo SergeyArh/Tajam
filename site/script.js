@@ -91,4 +91,27 @@ $(document).ready(function() {
       focusOnSelect: true
     });
 
+    $('#form').submit(function (event) {
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: "mail.php",
+        data: $(this).serialize()
+        }).done(function() {
+        $(this).find("input").val("");
+        alert("Сообщение успешно отправлено");
+        $("form").trigger("reset");
+        console.log('отправил');
+    });
+      return false;
+    });
+
 });
+
+
+
+/*$("body").on("click","[data-active]",function(){
+  var src		=$(this).attr('data-src');
+  $(this).toggleClass("active");
+  $(src).toggleClass("active");
+});*/
